@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semáforo Inteligente</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <header class="topo">
+    <div><span class="marca">SI</span><div><h1>Semáforo Inteligente</h1><p>Painel em tempo real</p></div></div>
+    <div id="status-conexao" class="status offline"><span></span> Offline</div>
+  </header>
+  <nav class="abas">
+    <button class="aba ativa" data-aba="visao-geral">Visão geral</button>
+    <button class="aba" data-aba="semaforo1">Semáforo 1</button>
+    <button class="aba" data-aba="semaforo2">Semáforo 2</button>
+    <button class="aba" data-aba="comunicacao">Comunicação</button>
+    <button class="aba" data-aba="controle-mqtt">MQTT</button>
+  </nav>
+  <main>
+    <section id="visao-geral" class="pagina ativa">
+      <div class="titulo"><div><p class="rotulo">CRUZAMENTO 01</p><h2>Visão geral</h2></div><button id="alternar-alerta" class="botao alerta">Ativar modo alerta</button></div>
+      <div class="cruzamento">
+        <article class="card"><h3>Semáforo 1</h3><p>Fluxo Norte–Sul</p><div id="gemeo-semaforo1" class="gemeo"></div></article>
+        <div class="seguranca"><strong>Sincronização segura</strong><span>Os dois fluxos nunca ficam verdes juntos</span></div>
+        <article class="card"><h3>Semáforo 2</h3><p>Fluxo Leste–Oeste</p><div id="gemeo-semaforo2" class="gemeo"></div></article>
+      </div>
+    </section>
+    <section id="semaforo1" class="pagina">
+      <div class="titulo"><div><p class="rotulo">DISPOSITIVO 01</p><h2>Semáforo 1</h2></div></div>
+      <div class="grade-detalhe"><article class="card"><div id="detalhe-semaforo1" class="gemeo grande"></div></article><div id="controles-semaforo1" class="card controles"></div></div>
+    </section>
+    <section id="semaforo2" class="pagina">
+      <div class="titulo"><div><p class="rotulo">DISPOSITIVO 02</p><h2>Semáforo 2</h2></div></div>
+      <div class="grade-detalhe"><article class="card"><div id="detalhe-semaforo2" class="gemeo grande"></div></article><div id="controles-semaforo2" class="card controles"></div></div>
+    </section>
+    <section id="controle-mqtt" class="pagina">
+  <div class="titulo">
+    <div>
+      <p class="rotulo">CONTROLE REMOTO</p>
+      <h2>Semáforos controlados por MQTT</h2>
+    </div>
+  </div>
+
+  <div class="cruzamento">
+    <article class="card">
+      <h3>Semáforo MQTT 1</h3>
+      <p>Fluxo Norte–Sul</p>
+
+      <div id="mqtt-semaforo1" class="gemeo"></div>
+    </article>
+
+    <div class="seguranca">
+      <strong>Controle exclusivo por MQTT</strong>
+      <span>Sem ciclo automático</span>
+    </div>
+
+    <article class="card">
+      <h3>Semáforo MQTT 2</h3>
+      <p>Fluxo Leste–Oeste</p>
+
+      <div id="mqtt-semaforo2" class="gemeo"></div>
+    </article>
+  </div>
+
+  <article class="card historico">
+    <div class="cabecalho-card">
+      <h3>Último comando MQTT</h3>
+    </div>
+
+    <div id="ultimo-comando-mqtt" class="lista">
+      <p class="vazio">
+        Aguardando comando MQTT...
+      </p>
+    </div>
+  </article>
+</section>
+    <section id="comunicacao" class="pagina">
+      <div class="titulo"><div><p class="rotulo">TEMPO REAL</p><h2>Comunicação MQTT</h2></div><button id="reconectar" class="botao">Reconectar</button></div>
+      <div class="grade-comunicacao">
+        <article class="card configuracao"><h3>Configuração</h3><label>Broker<input value="test.mosquitto.org" disabled></label><label>Turma<input id="mqtt-turma" value="si"></label><label>Equipe<input id="mqtt-equipe" value="equipe01"></label><button id="salvar-mqtt" class="botao primario">Salvar e conectar</button></article>
+        <article class="card historico"><div class="cabecalho-card"><h3>Histórico</h3><button id="limpar-historico" class="link">Limpar</button></div><div id="lista-historico" class="lista"><p class="vazio">Aguardando mensagens...</p></div></article>
+      </div>
+      <article class="card topicos"><h3>Tópicos utilizados</h3><code id="topicos-mqtt"></code></article>
+    </section>
+  </main>
+  <footer>Projeto Integrador · Sistemas de Informação · Programação III</footer>
+</body>
+</html>

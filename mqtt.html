@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Semáforos controlados por MQTT</title>
+
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="css/main.css">
+
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+  <script type="module" src="js/mqtt-only.js"></script>
+</head>
+
+<body>
+  <header class="topo">
+    <div>
+      <span class="marca">MQ</span>
+
+      <div>
+        <h1>Controle por MQTT</h1>
+        <p>Semáforos aguardando comandos</p>
+      </div>
+    </div>
+
+    <div id="status-conexao" class="status offline">
+      <span></span>
+      Conectando...
+    </div>
+  </header>
+
+  <main>
+    <section class="pagina ativa">
+      <div class="titulo">
+        <div>
+          <p class="rotulo">CONTROLE REMOTO</p>
+          <h2>Semáforos MQTT</h2>
+        </div>
+      </div>
+
+      <div class="cruzamento">
+        <article class="card">
+          <h3>Semáforo 1</h3>
+          <p>Fluxo Norte–Sul</p>
+
+          <div id="mqtt-semaforo1" class="gemeo"></div>
+        </article>
+
+        <div class="seguranca">
+          <strong>Controle exclusivo por MQTT</strong>
+          <span>O ciclo automático está desativado</span>
+        </div>
+
+        <article class="card">
+          <h3>Semáforo 2</h3>
+          <p>Fluxo Leste–Oeste</p>
+
+          <div id="mqtt-semaforo2" class="gemeo"></div>
+        </article>
+      </div>
+
+      <article class="card historico">
+        <div class="cabecalho-card">
+          <h3>Último comando recebido</h3>
+        </div>
+
+        <div id="mensagem-mqtt" class="lista">
+          <p class="vazio">Aguardando comando MQTT...</p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    Controle exclusivo pelo broker MQTT
+  </footer>
+</body>
+</html>
