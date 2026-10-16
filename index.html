@@ -16,6 +16,7 @@
   </header>
   <nav class="abas">
     <button class="aba ativa" data-aba="visao-geral">Visão geral</button>
+    <button class="aba" data-aba="semaforos-funcionamento">Em funcionamento</button>
     <button class="aba" data-aba="semaforo1">Semáforo 1</button>
     <button class="aba" data-aba="semaforo2">Semáforo 2</button>
     <button class="aba" data-aba="comunicacao">Comunicação</button>
@@ -29,6 +30,14 @@
         <div class="seguranca"><strong>Sincronização segura</strong><span>Os dois fluxos nunca ficam verdes juntos</span></div>
         <article class="card"><h3>Semáforo 2</h3><p>Fluxo Leste–Oeste</p><div id="gemeo-semaforo2" class="gemeo"></div></article>
       </div>
+    </section>
+    <section id="semaforos-funcionamento" class="pagina">
+      <div class="titulo"><div><p class="rotulo">MONITORAMENTO</p><h2>Semáforos em funcionamento</h2></div></div>
+      <div class="grade-funcionamento">
+        <article class="card"><div class="cabecalho-funcionamento"><h3>Semáforo 1</h3><span class="status-dispositivo ativo">Funcionando</span></div><p>Fluxo Norte–Sul</p><div id="funcionamento-semaforo1" class="gemeo"></div></article>
+        <article class="card"><div class="cabecalho-funcionamento"><h3>Semáforo 2</h3><span class="status-dispositivo ativo">Funcionando</span></div><p>Fluxo Leste–Oeste</p><div id="funcionamento-semaforo2" class="gemeo"></div></article>
+      </div>
+      <article class="card lista-funcionamento-card"><div class="cabecalho-card"><h3>Novos semáforos registrados</h3><span class="status-dispositivo cadastrado">Painel</span></div><p>Os semáforos registrados aparecem aqui automaticamente.</p><div id="lista-semaforos-funcionamento" class="lista"><p class="vazio">Nenhum novo semáforo registrado.</p></div></article>
     </section>
     <section id="semaforo1" class="pagina">
       <div class="titulo"><div><p class="rotulo">DISPOSITIVO 01</p><h2>Semáforo 1</h2></div></div>
@@ -86,6 +95,22 @@
         <article class="card historico"><div class="cabecalho-card"><h3>Histórico</h3><button id="limpar-historico" class="link">Limpar</button></div><div id="lista-historico" class="lista"><p class="vazio">Aguardando mensagens...</p></div></article>
       </div>
       <article class="card topicos"><h3>Tópicos utilizados</h3><code id="topicos-mqtt"></code></article>
+    </section>
+    <section id="novo-semaforo" class="pagina">
+      <div class="titulo"><div><p class="rotulo">CADASTRO DE DISPOSITIVO</p><h2>Registrar novo semáforo</h2></div></div>
+      <div class="grade-cadastro">
+        <article class="card"><h3>Dados do semáforo</h3><p>Cadastre um novo dispositivo para organizar sua configuração no painel.</p><form id="form-novo-semaforo" class="configuracao">
+          <label>Identificador<input name="id" required maxlength="40" placeholder="semaforo3"><small class="ajuda-campo">Espaços serão convertidos em hífen.</small></label>
+          <label>Nome de exibição<input name="nome" required maxlength="80" placeholder="Semáforo da Avenida Central"></label>
+          <label>Fluxo controlado<input name="fluxo" required maxlength="80" placeholder="Fluxo Norte–Sul"></label>
+          <label>Tempo verde (s)<input name="verde" type="number" min="1" max="120" value="10" required></label>
+          <label>Tempo amarelo (s)<input name="amarelo" type="number" min="1" max="120" value="3" required></label>
+          <label>Intervalo vermelho (s)<input name="vermelho" type="number" min="1" max="120" value="2" required></label>
+          <button type="submit" class="botao primario">Registrar semáforo</button><p id="mensagem-novo-semaforo" class="mensagem" aria-live="polite"></p>
+        </form></article>
+        <article class="card historico"><div class="cabecalho-card"><h3>Semáforos cadastrados</h3><button id="limpar-cadastros" type="button" class="link">Limpar</button></div><div id="lista-novos-semaforos" class="lista"><p class="vazio">Nenhum novo semáforo cadastrado.</p></div></article>
+      </div>
+      <article class="card aviso-cadastro"><strong>Atenção:</strong> este cadastro organiza o dispositivo no painel. Para controlar um novo dispositivo físico via MQTT, também é necessário atualizar o firmware e os tópicos utilizados.</article>
     </section>
   </main>
   <footer>Projeto Integrador · Sistemas de Informação · Programação III</footer>
