@@ -24,6 +24,7 @@ export class Interface {
   atualizar(s1,s2){
     for(const estado of [s1,s2]){
       document.querySelector(`#gemeo-${estado.dispositivo}`).innerHTML=this.htmlGemeo(estado);
+      document.querySelector(`#funcionamento-${estado.dispositivo}`).innerHTML=this.htmlGemeo(estado);
       document.querySelector(`#detalhe-${estado.dispositivo}`).innerHTML=this.htmlGemeo(estado);
       this.mqtt.publicar(estado.dispositivo,'estado',estado);
     }
